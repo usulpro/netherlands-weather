@@ -7,19 +7,19 @@ const { render } = require('./dist/client.bundle');
 const app = new Koa();
 app.use(serve('public'));
 
-const htmlTemplate = url => `<!DOCTYPE html>
+const htmlTemplate = async url => `<!DOCTYPE html>
 <html>
     <head>
         <title>Universal React server bundle</title>
     </head>
     <body>
-        <div id="app">${render(url)}</div>
-        <script src="client.bundle.js"></script>
-    </body>
-</html>`;
+        <div id="app">${await render(url)}</div>
+        </body>
+        </html>`;
+        // <script src="client.bundle.js"></script>
 
 app.use(async ctx => {
-  ctx.body = htmlTemplate(ctx.request.url);
+  ctx.body = await htmlTemplate(ctx.request.url);
   console.log('method:', ctx.request.method);
   console.log('url:', ctx.request.url);
 });
