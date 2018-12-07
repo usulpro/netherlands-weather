@@ -10,7 +10,6 @@ const htmlTemplate = url => `<!DOCTYPE html>
         <title>Universal React server bundle</title>
     </head>
     <body>
-        <h1>Server Side</h1>
         <div id="app">${render(url)}</div>
     </body>
 </html>`;

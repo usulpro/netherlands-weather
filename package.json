@@ -7,7 +7,8 @@
     "start": "node server.js",
     "build:server": "webpack --config ./webpack/webpack.server.config.js",
     "build:client": "",
-    "logs": "heroku logs --app usulpro-weather --tail"
+    "logs": "heroku logs --app usulpro-weather --tail",
+    "dev": "nodemon --exec heroku local web"
   },
   "repository": "https://github.com/UsulPro/netherlands-weather.git",
   "author": "Oleg Proskurin <regx@usul.su>",
