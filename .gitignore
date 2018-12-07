@@ -1,0 +1,5 @@
+
+node_modules/
+
+# don't ignore .env to simplify testing
+# .env

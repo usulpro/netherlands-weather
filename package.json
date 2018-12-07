@@ -1,0 +1,17 @@
+{
+  "name": "netherlands-weather",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": "https://github.com/UsulPro/netherlands-weather.git",
+  "author": "Oleg Proskurin <regx@usul.su>",
+  "license": "MIT",
+  "engines": {
+    "node": "10.x"
+  },
+  "dependencies": {
+    "koa": "^2.6.2"
+  }
+}
