@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "deploy": "yarn build:server && yarn start",
+    "deploy": "yarn build:server && yarn build:client && yarn start",
     "start": "node server.js",
     "build:server": "webpack --config ./webpack/webpack.server.config.js",
-    "build:client": "",
+    "build:client": "webpack --config ./webpack/webpack.client.config.js",
     "logs": "heroku logs --app usulpro-weather --tail",
     "dev": "nodemon --exec heroku local web"
   },

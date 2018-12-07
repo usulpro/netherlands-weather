@@ -2,13 +2,11 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  target: 'node',
-  entry: './src/render.js',
+  target: 'web',
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../public'),
     filename: 'client.bundle.js',
-    library: 'client',
-    libraryTarget: 'umd'
   },
   module: {
     rules: [

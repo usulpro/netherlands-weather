@@ -1,8 +1,11 @@
 const Koa = require('koa');
+const serve = require('koa-static');
+const chalk = require('chalk');
+
 const { render } = require('./dist/client.bundle');
 
 const app = new Koa();
-
+app.use(serve('public'));
 
 const htmlTemplate = url => `<!DOCTYPE html>
 <html>
@@ -11,6 +14,7 @@ const htmlTemplate = url => `<!DOCTYPE html>
     </head>
     <body>
         <div id="app">${render(url)}</div>
+        <script src="client.bundle.js"></script>
     </body>
 </html>`;
 
@@ -27,8 +31,10 @@ app.on('error', err => {
 const port = process.env.PORT;
 
 if (!port) {
-  console.log(`Warning! process.env.PORT is ${port}. Looks like you started via "npm start". Please use "heroku local web" instead!`);
-  return
+  console.log(
+    `Warning! process.env.PORT is ${port}. Looks like you started via "npm start". Please use "heroku local web" instead!`
+  );
+  return;
 }
 
-app.listen(port, () => console.log(`\nServer starts on ${port}`));
+app.listen(port, () => console.log(chalk.cyan(`\nServer starts on ${port}`)));
