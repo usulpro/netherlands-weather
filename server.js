@@ -1,5 +1,5 @@
 const Koa = require('koa');
-
+const { render } = require('./dist/client.bundle');
 
 const app = new Koa();
 
@@ -11,7 +11,7 @@ const htmlTemplate = url => `<!DOCTYPE html>
     </head>
     <body>
         <h1>Server Side</h1>
-        <div id="app">${(url)}</div>
+        <div id="app">${render(url)}</div>
     </body>
 </html>`;
 
