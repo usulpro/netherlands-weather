@@ -8,7 +8,9 @@
     "build:server": "webpack --config ./webpack/webpack.server.config.js",
     "build:client": "webpack --config ./webpack/webpack.client.config.js",
     "logs": "heroku logs --app usulpro-weather --tail",
-    "dev": "nodemon --exec heroku local web"
+    "dev": "nodemon --exec heroku local web",
+    "storybook": "start-storybook -p 9001",
+    "build-storybook": "build-storybook"
   },
   "repository": "https://github.com/UsulPro/netherlands-weather.git",
   "author": "Oleg Proskurin <regx@usul.su>",
@@ -40,8 +42,16 @@
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^4.0.12",
+    "@storybook/addon-console": "^1.1.0",
+    "@storybook/addon-links": "^4.0.12",
+    "@storybook/addon-options": "^4.0.12",
+    "@storybook/addon-storysource": "^4.0.12",
+    "@storybook/addons": "^4.0.12",
+    "@storybook/react": "^4.0.12",
     "babel-loader": "^8.0.4",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
