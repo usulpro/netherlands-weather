@@ -1,4 +1,7 @@
 const path = require('path');
+const {
+  module: { rules },
+} = require('./webpack.config');
 
 module.exports = {
   mode: 'production',
@@ -9,19 +12,6 @@ module.exports = {
     filename: 'client.bundle.js',
   },
   module: {
-    rules: [
-      {
-        test: /\.js?$/,
-        use: [
-          { loader: 'babel-loader' },
-        ],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(graphql|gql)$/,
-        exclude: /node_modules/,
-        loader: 'graphql-tag/loader',
-      }
-    ]
-  }
+    rules,
+  },
 };
