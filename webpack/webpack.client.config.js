@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+
 const {
   module: { rules },
 } = require('./webpack.config');
@@ -14,4 +16,7 @@ module.exports = {
   module: {
     rules,
   },
+  plugins: [
+    new webpack.EnvironmentPlugin(['NODE_ENV','ENDPOINT'])
+  ]
 };

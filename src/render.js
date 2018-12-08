@@ -1,39 +1,18 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { ApolloProvider, renderToStringWithData } from 'react-apollo';
+import { renderToStringWithData } from 'react-apollo';
+import { ServerLocation } from '@reach/router';
 
 import App from './app';
 import { client } from './apollo/index';
 
-// const SsrApp = (url) => (
-//   <ApolloProvider client={client()}>
-//     <h2>SSR App</h2>
-//     <App url={url} />
-//   </ApolloProvider>
-// );
-
-const SApp = ({ url, client }) => (
-  <ApolloProvider client={client}>
-    <h2>SSR App</h2>
-    <App url={url} />
-  </ApolloProvider>
-);
-
-const SsrApp = (url, client) => <SApp url={url} client={client} />;
-
-const Sapp = url => <App url={url} />;
-
-export const render = url =>
-  renderToStringWithData(SsrApp(url, client())).then(content => {
-    console.log('#### ​content ---->', content);
-    const initialState = client().extract();
-    console.log('​initialState', initialState);
-    return content;
+export const render = url => {
+  const apolloClient = client();
+  return renderToStringWithData(
+    <ServerLocation url={url}>
+      <App client={apolloClient} />
+    </ServerLocation>
+  ).then(content => {
+    const data = apolloClient.extract();
+    return { content, data };
   });
-
-// e xport const render = url =>
-//   ReactDOMServer.renderToString(
-//     <ApolloProvider client={client()}>
-//       <App url={url} />
-//     </ApolloProvider>
-//   );
+};

@@ -2,9 +2,9 @@ import { ApolloClient } from 'apollo-client';
 import fetch from 'node-fetch';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { window } from 'global';
 
 const endpoint = process.env.ENDPOINT;
-console.log('​endpoint', endpoint);
 
 export const client = () =>
   new ApolloClient({
@@ -13,5 +13,7 @@ export const client = () =>
       uri: endpoint,
       fetch,
     }),
-    cache: new InMemoryCache(),
+    cache: window
+      ? new InMemoryCache().restore(window.__APOLLO_STATE__)
+      : new InMemoryCache(),
   });

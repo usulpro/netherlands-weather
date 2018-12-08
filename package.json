@@ -29,7 +29,7 @@
     "apollo-link-http": "^1.5.7",
     "apollo-utilities": "^1.0.26",
     "chalk": "^2.4.1",
-    "globals": "^11.9.0",
+    "global": "^4.3.2",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "koa": "^2.6.2",
