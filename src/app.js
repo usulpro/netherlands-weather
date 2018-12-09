@@ -5,7 +5,6 @@ import { Router, Link } from '@reach/router';
 
 import Layout from './common/Layout'
 
-import query from './cities.gql';
 
 const Home = () => (
   <>
@@ -18,23 +17,23 @@ const Home = () => (
   </>
 );
 
-const City = ({ city }) => (
-  <>
-    <h2>{city.toUpperCase()}</h2>
-    <br />
-    <Link to="/">back</Link>
-    <br />
-    <br />
-    <Query query={query} variables={{ city }}>
-      {({ data, loading }) => (
-        <div>
-          {`${loading ? '* ' : ''}`}
-          {JSON.stringify(data)}
-        </div>
-      )}
-    </Query>
-  </>
-);
+// const City = ({ city }) => (
+//   <>
+//     <h2>{city.toUpperCase()}</h2>
+//     <br />
+//     <Link to="/">back</Link>
+//     <br />
+//     <br />
+//     <Query query={query} variables={{ city }}>
+//       {({ data, loading }) => (
+//         <div>
+//           {`${loading ? '* ' : ''}`}
+//           {JSON.stringify(data)}
+//         </div>
+//       )}
+//     </Query>
+//   </>
+// );
 
 const OldLayout = () => (
   <main>
@@ -48,7 +47,6 @@ const OldLayout = () => (
 const App = ({ client }) => (
   <ApolloProvider client={client}>
     <Layout />
-    <OldLayout />
   </ApolloProvider>
 );
 

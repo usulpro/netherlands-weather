@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { ServerLocation } from '@reach/router';
 import '../common/__stories__/index';
+import '../panel/__stories__/index';
 
 import { client } from '../apollo/index';
 

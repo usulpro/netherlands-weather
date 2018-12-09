@@ -13,19 +13,6 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const InnerContainer = styled.div`
-  margin: 4px;
-  border: gray solid 8px;
-  border-radius: 8px;
-  background-color: gray;
-  height: 1px;
-  flex-grow: 1;
-`;
-
-const List = ({children}) => <Container>
-  <InnerContainer>
-    {children}
-  </InnerContainer>
-</Container> ;
+const List = ({ children }) => <Container>{children}</Container>;
 
 export default List;

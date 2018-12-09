@@ -10,10 +10,10 @@ const ListHolder = styled.div`
   top: 5vw;
 `;
 
-const Panel = () => (
+const Panel = ({ today }) => (
   <ListHolder>
     <List>
-      {'<CityList />'}
+      <CityList today={today} />
     </List>
   </ListHolder>
 );

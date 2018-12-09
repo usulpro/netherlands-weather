@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import Header from '../header';
 import Panel from '../panel';
 
-import { theme } from '../constants';
+import { theme, today } from '../constants';
 
 const Container = styled.div`
   position: absolute;
@@ -48,7 +48,7 @@ const headerBg = (
 const MapHolder = styled.div`
   position: relative;
   width: 100%;
-  height: 800px;
+  height: 1000px;
   top: 5vh;
   background-color: #d8d8d8;
 `;
@@ -62,30 +62,37 @@ const HeaderHolder = styled.div`
 
 const PanelHolder = styled.div`
   position: absolute;
-  top 200px;
+  top: calc(20px + 10vw);
   width: 400px;
   height: 200px;
 `;
 
-const Layout = () => (
-  <Container>
-    <Global
-      styles={css`
-        body: {
-          margin: 0;
-        }
-      `}
-    />
-    <MapHolder id="map" />
-    {headerBg}
-    {panelBg}
-    <HeaderHolder>
-      <Header />
-    </HeaderHolder>
-    <PanelHolder>
-      <Panel />
-    </PanelHolder>
-  </Container>
-);
+class Layout extends React.Component {
+  state = {
+    today,
+  };
+  render() {
+    return (
+      <Container>
+        <Global
+          styles={css`
+            body: {
+              margin: 0;
+            }
+          `}
+        />
+        <MapHolder id="map" />
+        {headerBg}
+        {panelBg}
+        <HeaderHolder>
+          <Header today={this.state.today} />
+        </HeaderHolder>
+        <PanelHolder>
+          <Panel today={this.state.today} />
+        </PanelHolder>
+      </Container>
+    );
+  }
+}
 
 export default Layout;

@@ -1,0 +1,14 @@
+query getCities($city: String, $today: DateTime) {
+  cities: allCities(filter: { name_contains: $city }, orderBy: name_ASC) {
+    id
+    name
+    weather(filter: { datetime: $today }) {
+      id
+      datetime
+      precipitationMm
+      precipitationProbability
+      temperatureMax
+      temperatureMin
+    }
+  }
+}
