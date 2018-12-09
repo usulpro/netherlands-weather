@@ -4,3 +4,5 @@ node_modules/
 
 # don't ignore .env to simplify testing
 # .env
+
+public/client\.bundle\.js

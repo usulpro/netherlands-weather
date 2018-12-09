@@ -2,13 +2,13 @@ const Koa = require('koa');
 const serve = require('koa-static');
 const chalk = require('chalk');
 
-const { render } = require('./dist/client.bundle');
+const { render } = require('../dist/client.bundle');
 
 const app = new Koa();
 app.use(serve('public'));
 
-const htmlTemplate = async url =>
-  render(url).then(
+const htmlTemplate = async (url, renderFn) =>
+  renderFn(url).then(
     ({ content, data }) => /* HTML */ `
       <!DOCTYPE html>
       <html lang="en">
@@ -31,7 +31,7 @@ const htmlTemplate = async url =>
   );
 
 app.use(async ctx => {
-  ctx.body = await htmlTemplate(ctx.request.url);
+  ctx.body = await htmlTemplate(ctx.request.url, render);
   console.log('url:', ctx.request.url);
 });
 
@@ -47,7 +47,11 @@ if (!port) {
       `Warning! process.env.PORT is ${port}. Looks like you started via "npm start". Please use "heroku local web" instead!`
     )
   );
-  return;
+  // process.exit(1);
+} else {
+  app.listen(port, () => console.log(chalk.cyan(`\nServer starts on ${port}`)));
 }
 
-app.listen(port, () => console.log(chalk.cyan(`\nServer starts on ${port}`)));
+module.exports = {
+  htmlTemplate,
+};

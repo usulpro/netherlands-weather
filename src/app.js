@@ -7,7 +7,7 @@ import query from './cities.gql';
 
 const Home = () => (
   <>
-    <h2>React App</h2>
+    <h2>React Weather App</h2>
     <hr />
     <Link to="/cities/amsterdam">amsterdam</Link>
     <br />
