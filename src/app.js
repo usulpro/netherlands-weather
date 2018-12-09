@@ -3,6 +3,8 @@ import { ApolloProvider } from 'react-apollo';
 import { Query } from 'react-apollo';
 import { Router, Link } from '@reach/router';
 
+import Layout from './common/Layout'
+
 import query from './cities.gql';
 
 const Home = () => (
@@ -34,7 +36,7 @@ const City = ({ city }) => (
   </>
 );
 
-const Layout = () => (
+const OldLayout = () => (
   <main>
     <Router>
       <Home path="/" />
@@ -46,6 +48,7 @@ const Layout = () => (
 const App = ({ client }) => (
   <ApolloProvider client={client}>
     <Layout />
+    <OldLayout />
   </ApolloProvider>
 );
 
