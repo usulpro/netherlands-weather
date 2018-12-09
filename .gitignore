@@ -6,3 +6,11 @@ node_modules/
 # .env
 
 public/client\.bundle\.js
+
+scripts/output/data\.zip
+
+scripts/output/nodes/
+
+scripts/output/relations/
+
+API/data/

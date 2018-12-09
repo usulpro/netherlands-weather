@@ -1,0 +1,16 @@
+types: ./types.graphql
+functions: {}
+permissions:
+- operation: City.read
+- operation: City.create
+- operation: City.update
+- operation: City.delete
+- operation: File.read
+- operation: File.create
+- operation: File.update
+- operation: File.delete
+- operation: User.read
+- operation: User.create
+- operation: User.update
+- operation: User.delete
+rootTokens: []

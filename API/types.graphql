@@ -1,0 +1,34 @@
+type File @model {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type City @model {
+  id: ID! @isUnique
+  name: String! @isUnique
+  latitude: Float
+  longitude: Float
+  weather: [Weather!]! @relation(name: "CityWeather")
+}
+
+type Weather @model {
+  id: ID! @isUnique
+  datetime: DateTime!
+  city: City @relation(name: "CityWeather")
+  temperatureMax: Float
+  temperatureMin: Float
+  precipitationProbability: Int
+  precipitationMm: Float
+}
