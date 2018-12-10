@@ -1,4 +1,5 @@
 import React from 'react';
+import { navigate } from '@reach/router';
 import styled from '@emotion/styled';
 
 import { createIcon } from '../common/weather-icon';
@@ -39,10 +40,12 @@ const Container = styled.li`
 
 const CityItem = ({ city }) => {
   const weather = city.weather[0];
-  const range = weather.temperatureMin ? `${weather.temperatureMin}\u00B0 - ${weather.temperatureMax}\u00B0` : 'unknown';
+  const range = weather.temperatureMin
+    ? `${weather.temperatureMin}\u00B0 - ${weather.temperatureMax}\u00B0`
+    : 'unknown';
   const Icon = createIcon(weather).Icon;
   return (
-    <Container>
+    <Container onClick={() => navigate(`/cities/${city.name.toLowerCase()}`)}>
       {city.name}
       <div className="space" />
       <div className="info">{range}</div>

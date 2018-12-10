@@ -1,4 +1,5 @@
 import React from 'react';
+import { Router, Link } from '@reach/router';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 
@@ -71,6 +72,9 @@ class Layout extends React.Component {
   state = {
     today,
   };
+
+  changeDate = today => this.setState({ today });
+
   render() {
     return (
       <Container>
@@ -85,7 +89,10 @@ class Layout extends React.Component {
         {headerBg}
         {panelBg}
         <HeaderHolder>
-          <Header today={this.state.today} />
+          <Router>
+            <Header today={this.state.today} path="/" home changeDate={this.changeDate} />
+            <Header today={this.state.today} path="/cities/:city" changeDate={this.changeDate} />
+          </Router>
         </HeaderHolder>
         <PanelHolder>
           <Panel today={this.state.today} />
