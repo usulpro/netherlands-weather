@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1544351125680" clover="3.2.0">
+  <project timestamp="1544351125680" name="All files">
+    <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0" elements="7" coveredelements="0" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1">
+      <file name="index.js" path="/media/diskE/WebProjects/robert/stack/netherlands-weather/src/index.js">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </metrics>
+  </project>
+</coverage>

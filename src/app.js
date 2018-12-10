@@ -1,34 +1,53 @@
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
+import { Router, Link } from '@reach/router';
 
-import { client } from './apollo/index';
-import query from './cities.gql'
+import Layout from './common/Layout'
 
-const App = ({ url }) => (
-  <div>
-    <h2>React App</h2>
-    <span>on {url}</span>
+
+const Home = () => (
+  <>
+    <h2>React Weather App</h2>
     <hr />
-    <a href="amsterdam">amsterdam</a>
+    <Link to="/cities/amsterdam">amsterdam</Link>
     <br />
-    <a href="rotterdam">rotterdam</a>
+    <Link to="/cities/rotterdam">rotterdam</Link>
     <hr />
-    <Query
-      // query={gql`
-      //   query getCities($city: String) {
-      //     allCities(filter: { name: $city }) {
-      //       name
-      //     }
-      //   }
-      // `}
-      query={query}
-      variables={{city: url.replace('/','')}}
-    >
-      {({ data, loading }) => <div>{JSON.stringify(data)}</div>}
-    </Query>
-  </div>
+  </>
+);
+
+// const City = ({ city }) => (
+//   <>
+//     <h2>{city.toUpperCase()}</h2>
+//     <br />
+//     <Link to="/">back</Link>
+//     <br />
+//     <br />
+//     <Query query={query} variables={{ city }}>
+//       {({ data, loading }) => (
+//         <div>
+//           {`${loading ? '* ' : ''}`}
+//           {JSON.stringify(data)}
+//         </div>
+//       )}
+//     </Query>
+//   </>
+// );
+
+const OldLayout = () => (
+  <main>
+    <Router>
+      <Home path="/" />
+      <City path="/cities/:city" />
+    </Router>
+  </main>
+);
+
+const App = ({ client }) => (
+  <ApolloProvider client={client}>
+    <Layout />
+  </ApolloProvider>
 );
 
 export default App;

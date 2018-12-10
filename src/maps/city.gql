@@ -1,0 +1,8 @@
+query getCities($city: String) {
+  city: allCities(filter: { name: $city }, orderBy: name_ASC) {
+    id
+    name
+    latitude
+    longitude
+  }
+}

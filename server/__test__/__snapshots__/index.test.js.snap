@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SSR city page 1`] = `
+"
+      <!DOCTYPE html>
+      <html lang=\\"en\\">
+        <head>
+          <meta charset=\\"utf-8\\" />
+          <title>Weather</title>
+        </head>
+        <body>
+          <div id=\\"app\\"><main><div style=\\"outline:none\\" tabindex=\\"-1\\" role=\\"group\\"><h2>AMSTERDAM</h2><br/><a href=\\"/\\">back</a><br/><br/><div>{&quot;allCities&quot;:[{&quot;name&quot;:&quot;Amsterdam&quot;,&quot;__typename&quot;:&quot;City&quot;}]}</div></div></main></div>
+          <script>
+            window.__APOLLO_STATE__ = {\\"ROOT_QUERY.allCities({\\\\\\"filter\\\\\\":{\\\\\\"name\\\\\\":\\\\\\"amsterdam\\\\\\"}}).0\\":{\\"name\\":\\"Amsterdam\\",\\"__typename\\":\\"City\\"},\\"ROOT_QUERY\\":{\\"allCities({\\\\\\"filter\\\\\\":{\\\\\\"name\\\\\\":\\\\\\"amsterdam\\\\\\"}})\\":[{\\"type\\":\\"id\\",\\"generated\\":true,\\"id\\":\\"ROOT_QUERY.allCities({\\\\\\"filter\\\\\\":{\\\\\\"name\\\\\\":\\\\\\"amsterdam\\\\\\"}}).0\\",\\"typename\\":\\"City\\"}]}};
+          </script>
+          <script src=\\"/client.bundle.js\\"></script>
+          <noscript>
+            Without JavaScript you can't interact with this App.
+          </noscript>
+        </body>
+      </html>
+    "
+`;
+
+exports[`SSR home page 1`] = `
+"
+      <!DOCTYPE html>
+      <html lang=\\"en\\">
+        <head>
+          <meta charset=\\"utf-8\\" />
+          <title>Weather</title>
+        </head>
+        <body>
+          <div id=\\"app\\"><main><div style=\\"outline:none\\" tabindex=\\"-1\\" role=\\"group\\"><h2>React App</h2><hr/><a href=\\"/cities/amsterdam\\">amsterdam</a><br/><a href=\\"/cities/rotterdam\\">rotterdam</a><hr/></div></main></div>
+          <script>
+            window.__APOLLO_STATE__ = {};
+          </script>
+          <script src=\\"/client.bundle.js\\"></script>
+          <noscript>
+            Without JavaScript you can't interact with this App.
+          </noscript>
+        </body>
+      </html>
+    "
+`;
