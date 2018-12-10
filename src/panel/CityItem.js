@@ -39,13 +39,16 @@ const Container = styled.li`
 `;
 
 const CityItem = ({ city }) => {
-  const weather = city.weather[0];
+  const weather = city.weather[0] || {
+    temperatureMin: null,
+    precipitationMm: null,
+  };
   const range = weather.temperatureMin
     ? `${weather.temperatureMin}\u00B0 - ${weather.temperatureMax}\u00B0`
     : 'unknown';
   const Icon = createIcon(weather).Icon;
   return (
-    <Container onClick={() => navigate(`/cities/${city.name.toLowerCase()}`)}>
+    <Container onClick={() => navigate(`/cities/${encodeURIComponent(city.name.toLowerCase())}`)}>
       {city.name}
       <div className="space" />
       <div className="info">{range}</div>

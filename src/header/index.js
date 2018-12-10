@@ -79,13 +79,16 @@ const Header = ({ city, home, navigate, today, changeDate }) => {
         <Query query={query} variables={{ today, city }}>
           {({ data: { city }, loading }) => {
             if (loading) return 'loading...';
-            const weather = city[0].weather[0];
+            const weather = city[0].weather[0] || {
+              temperatureMin: null,
+              precipitationMm: null,
+            };
             const Icon = createIcon(weather).Icon;
             const middle = weather.temperatureMin
               ? `${Math.round(
                   (weather.temperatureMin + weather.temperatureMax) / 2
                 )}\u00B0`
-              : 'unknown';
+              : '';
             return (
               <IconHolder>
                 <div className="icon-position">
