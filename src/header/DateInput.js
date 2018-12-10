@@ -6,12 +6,14 @@ import dayjs from 'dayjs';
 const Date = styled.div`
   color: white;
   opacity: 0.8;
-  font-size: 18px;
+  font-size: 30px;
   font-family: sans-serif;
   margin-bottom: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  z-index: 10;
+  width: 300px;
   & span {
     visibility: hidden;
     margin-left: 8px;

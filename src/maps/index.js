@@ -1,20 +1,21 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { withApollo } from 'react-apollo';
+import MarkerClusterer from '@google/markerclusterer';
 
 import { mapStyle } from '../mapTheme';
 import query from './city.gql';
 
 const MapSection = styled.div`
   width: 100%;
-  height: 200vh;
+  height: 150vh;
 `;
 
 class Maps extends React.Component {
   mapContainer = null;
   map = null;
   mapApi = null;
-  markers = null;
+  markers = [];
   markerCluster = null;
 
   componentDidMount() {
@@ -49,36 +50,55 @@ class Maps extends React.Component {
       center: { lat: 52.354775, lng: 4.7585387 },
       styles: mapStyle,
     });
-    // this.fetchData();
+    this.fetchCoords();
   };
 
-  componentDidUpdate(props) {
-    const { client, today, city = 'amsterdam' } = this.props;
+  fetchCoords = () => {
+    const { client } = this.props;
     client
-      .query({ query, variables: { today, city } })
+      .query({ query })
+      .then(({ data }) => data.city)
+      .then(cities => {
+				console.log("​Maps -> fetchCoords -> cities", cities)
+        cities.forEach(city => {
+          const marker = new this.mapApi.Marker({
+            position: { lat: city.latitude, lng: city.longitude },
+            title: city.name,
+            label: {
+              text: city.name,
+              color: '#3a3a3a',
+              fontSize: '16px',
+              fontWeight: '600',
+            },
+            icon: {
+              url: '/place.svg',
+              scaledSize: new this.mapApi.Size(40, 40),
+              labelOrigin: new this.mapApi.Point(20, -5),
+            },
+          });
+          this.markers.push(marker);
+
+        });
+        console.log("​Maps -> fetchCoords -> this.markers", this.markers)
+        this.markerCluster = new MarkerClusterer(this.map, this.markers, {
+          imagePath:
+            'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+        });
+      });
+  };
+
+  componentDidUpdate() {
+    const { client, city = 'amsterdam' } = this.props;
+    client
+      .query({ query, variables: { city } })
       .then(({ data }) => {
         console.log('​Maps -> componentDidUpdate -> data', data);
         return data.city[0];
       })
-      .then(({ latitude, longitude }) =>
-        {
-          const marker = new this.mapApi.Marker({
-            position: { lat: latitude, lng: longitude },
-            title: city,
-            label: {
-              text: city,
-              color: '#5691ad',
-              fontSize: '10px'
-            },
-            // icon: {
-            //   url: cityIcon,
-            //   labelOrigin: new this.mapApi.Point(50, 13)
-            // }
-          });
-          this.map.panTo({ lat: latitude, lng: longitude });
-          this.map.addMarker(marker);
-        }
-      );
+      .then(({ latitude, longitude }) => {
+        this.map.panTo({ lat: latitude, lng: longitude });
+        this.map.setZoom(11);
+      });
   }
 
   render() {

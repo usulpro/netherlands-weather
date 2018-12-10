@@ -12,9 +12,10 @@ import { theme, today } from '../constants';
 const Container = styled.div`
   position: absolute;
   width: 100%;
-  height: 700px;
+  height: 100%;
   top: 0px;
   left: 0px;
+  background-color: ${theme.panelBackground};
 `;
 
 const Holder = styled.div`
@@ -29,7 +30,7 @@ const panelBg = (
   <Holder>
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
       <polygon
-        points="80,0 100,0 100,5 0,40 0,15"
+        points="80,0 100,0 100,5 100,200 0,200 0,15"
         style={{ fill: theme.panelBackground }}
       />
     </svg>
@@ -47,19 +48,23 @@ const headerBg = (
   </Holder>
 );
 
+
 const MapHolder = styled.div`
   position: relative;
   width: 100%;
-  height: 200vh;
-  top: 5vh;
+  height: 110vh;
+  top: 0;
+  clip-path: polygon(96% 0%, 100% 0%, 100% 150%,0 150%,0 70%);
+  background-color: #dfd2ae;
 `;
-// background-color: #d8d8d8;
 
 const HeaderHolder = styled.div`
   position: absolute;
   top 0px;
   width: 100%;
-  height: 200px;
+  height: 100%;
+  clip-path: polygon(0 0, 86% 0, 0 25%);
+  background-color: ${theme.headerBackground}
 `;
 
 const PanelHolder = styled.div`
@@ -67,6 +72,7 @@ const PanelHolder = styled.div`
   top: calc(20px + 10vw);
   width: 400px;
   height: 200px;
+
 `;
 
 class Layout extends React.Component {
@@ -79,21 +85,6 @@ class Layout extends React.Component {
   render() {
     return (
       <Container>
-        <Global
-          styles={css`
-            body: {
-              margin: 0;
-            }
-          `}
-        />
-        <MapHolder>
-          <Router>
-            <Maps today={this.state.today} path="/" />
-            <Maps today={this.state.today} path="/cities/:city" />
-          </Router>
-        </MapHolder>
-        {headerBg}
-        {panelBg}
         <HeaderHolder>
           <Router>
             <Header
@@ -109,6 +100,12 @@ class Layout extends React.Component {
             />
           </Router>
         </HeaderHolder>
+        <MapHolder id="map-holder">
+          <Router>
+            <Maps today={this.state.today} path="/" />
+            <Maps today={this.state.today} path="/cities/:city" />
+          </Router>
+        </MapHolder>
         <PanelHolder>
           <Panel today={this.state.today} />
         </PanelHolder>
