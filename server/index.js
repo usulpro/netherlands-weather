@@ -47,7 +47,6 @@ if (!port) {
       `Warning! process.env.PORT is ${port}. Looks like you started via "npm start". Please use "heroku local web" instead!`
     )
   );
-  // process.exit(1);
 } else {
   app.listen(port, () => console.log(chalk.cyan(`\nServer starts on ${port}`)));
 }

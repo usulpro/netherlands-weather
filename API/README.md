@@ -1,28 +1,25 @@
-## Welcome to the new Graphcool Framework!
+## Graphcool API
 
-Your project has just been upgraded and is ready for usage with the Graphcool CLI.
+You need graphcool CLI installed to to deploy the service
 
-In order to use the new CLI, please install it first:
-```sh
-$ npm install -g graphcool
+```shell
+npm install -g graphcool
 ```
 
-## Project Structure
-The central configuration of your upgraded Service lives in the `graphcool.yml`.
-There, all your permissions, functions and types are tied together.
-You can find your schema in the `types.graphql`.
+### Deploy
 
-## Deployment
-To deploy changes of your service, just execute
-```sh
-$ graphcool deploy
+```shell
+yarn deploy:api
 ```
 
-## Resources
-### CLI
-You can read more about the CLI in the [new docs](https://docs-next.graph.cool/reference/graphcool-cli/overview-zboghez5go)
-Or execute `graphcool` to see the usage overview.
-### graphcool.yml
-The `graphcool.yml` format is described here: https://docs-next.graph.cool/reference/service-definition/graphcool.yml-foatho8aip
+### Import data to DB
 
-Happy hacking!
+```
+yarn upload
+```
+
+### Service endpoint
+
+https://api.graph.cool/simple/v1/cjpeioazq94e80143lvgo39w7
+
+

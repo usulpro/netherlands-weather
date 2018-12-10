@@ -5,11 +5,10 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/*.{js}'],
   coverageDirectory: 'public/coverage',
-  // testEnvironment: 'jsdom',
   testEnvironment: 'node',
-  // setupTestFrameworkScriptFile: './node_modules/jest-enzyme/lib/index.js',
   transform: {
     '\\.(gql|graphql)$': 'jest-transform-graphql',
-    '.*': 'babel-jest',
+    '^.+\\.js$': 'babel-jest',
+    '^.+\\.svg$': 'jest-svg-transformer',
   },
 };

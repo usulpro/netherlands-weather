@@ -9,6 +9,7 @@ import query from './city.gql';
 const MapSection = styled.div`
   width: 100%;
   height: 150vh;
+  min-height: 500px;
 `;
 
 class Maps extends React.Component {
@@ -19,10 +20,6 @@ class Maps extends React.Component {
   markerCluster = null;
 
   componentDidMount() {
-    console.log(
-      '​Maps -> componentDidMount -> process.env.MAPS_KEY',
-      process.env.MAPS_KEY
-    );
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=${
       process.env.MAPS_KEY
@@ -34,16 +31,17 @@ class Maps extends React.Component {
     this.initMap();
   }
 
+
+  componentDidUpdate() {
+    this.zoomToCity();
+  }
+
   initMap = () => {
     if (!window.google) {
-      console.log(
-        'TCL: MapList -> componentDidMount -> window.google',
-        window.google
-      );
+      console.log('Google map is loading...');
       setTimeout(this.initMap, 50);
       return;
     }
-    console.log('initMap', window.google);
     this.mapApi = window.google.maps;
     this.map = new this.mapApi.Map(this.mapContainer, {
       zoom: 9,
@@ -54,12 +52,11 @@ class Maps extends React.Component {
   };
 
   fetchCoords = () => {
-    const { client } = this.props;
+    const { client, navigate } = this.props;
     client
       .query({ query })
       .then(({ data }) => data.city)
       .then(cities => {
-				console.log("​Maps -> fetchCoords -> cities", cities)
         cities.forEach(city => {
           const marker = new this.mapApi.Marker({
             position: { lat: city.latitude, lng: city.longitude },
@@ -77,29 +74,32 @@ class Maps extends React.Component {
             },
           });
           this.markers.push(marker);
-
+          marker.addListener('click', () =>
+            navigate(`/cities/${encodeURIComponent(city.name.toLowerCase())}`)
+          );
         });
-        console.log("​Maps -> fetchCoords -> this.markers", this.markers)
         this.markerCluster = new MarkerClusterer(this.map, this.markers, {
           imagePath:
             'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
         });
+        this.zoomToCity();
       });
   };
 
-  componentDidUpdate() {
-    const { client, city = 'amsterdam' } = this.props;
+  zoomToCity = () => {
+    const { client, city } = this.props;
+    if (!city) return;
     client
       .query({ query, variables: { city } })
       .then(({ data }) => {
-        console.log('​Maps -> componentDidUpdate -> data', data);
         return data.city[0];
       })
       .then(({ latitude, longitude }) => {
         this.map.panTo({ lat: latitude, lng: longitude });
         this.map.setZoom(11);
       });
-  }
+  };
+
 
   render() {
     return (
@@ -110,20 +110,6 @@ class Maps extends React.Component {
             this.mapContainer = mapContainer;
           }}
         />
-        {/* <Query
-          query={query}
-          variables={{ today, city }}
-          onCompleted={(data) =>
-            console.log('complited', data.city[0].latitude)
-          }
-        >
-          {({ data, loading }) => {
-            if (loading) return 'loading...';
-            console.log('​Maps -> render -> data', data);
-
-            return null;
-          }}
-        </Query> */}
       </>
     );
   }

@@ -60,6 +60,8 @@ const IconHolder = styled.div`
     font-family: sans-serif;
     font-weight: 800;
     font-size: calc(16px + 2vw);
+    position: relative;
+    top: calc(-20px + 1vw);
   }
 `;
 
