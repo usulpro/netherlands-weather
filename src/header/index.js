@@ -15,7 +15,7 @@ const Container = styled.header`
 
 const Title = styled.h1`
   color: white;
-  font-size: 34px;
+  font-size: 40px;
   font-family: sans-serif;
   margin: 0px;
   margin-bottom: 8px;
@@ -37,7 +37,7 @@ const Title = styled.h1`
 const Comment = styled.div`
   color: white;
   opacity: 0.8;
-  font-size: 18px;
+  font-size: 24px;
   font-family: sans-serif;
   margin-bottom: 8px;
 `;
@@ -47,9 +47,11 @@ const IconHolder = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 20px;
   & .icon-position {
     transform: scale(2);
     transform-origin: center;
+    height: 10px
     padding-top: 5px;
   }
   & .info-position {

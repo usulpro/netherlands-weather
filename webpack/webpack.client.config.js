@@ -17,6 +17,6 @@ module.exports = {
     rules,
   },
   plugins: [
-    new webpack.EnvironmentPlugin(['NODE_ENV','ENDPOINT'])
+    new webpack.EnvironmentPlugin(['NODE_ENV','ENDPOINT', 'MAPS_KEY'])
   ]
 };
