@@ -6,6 +6,9 @@ import MarkerClusterer from '@google/markerclusterer';
 import { mapStyle } from '../mapTheme';
 import query from './city.gql';
 
+const initCenter =  { lat: 52.354775, lng: 4.7585387 };
+const initZoom = 9;
+
 const MapSection = styled.div`
   width: 100%;
   height: 150vh;
@@ -17,6 +20,7 @@ class Maps extends React.Component {
   map = null;
   mapApi = null;
   markers = [];
+  currentMarker = null;
   markerCluster = null;
 
   componentDidMount() {
@@ -31,7 +35,6 @@ class Maps extends React.Component {
     this.initMap();
   }
 
-
   componentDidUpdate() {
     this.zoomToCity();
   }
@@ -44,12 +47,19 @@ class Maps extends React.Component {
     }
     this.mapApi = window.google.maps;
     this.map = new this.mapApi.Map(this.mapContainer, {
-      zoom: 9,
-      center: { lat: 52.354775, lng: 4.7585387 },
+      zoom: initZoom,
+      center: initCenter,
       styles: mapStyle,
     });
     this.fetchCoords();
   };
+
+  markerLabel = (text, isHighlight) => ({
+    text,
+    color: isHighlight ? '#336da7' : '#444444',
+    fontSize: isHighlight ? '24px' : '16px',
+    fontWeight: isHighlight ? '600' : '500',
+  });
 
   fetchCoords = () => {
     const { client, navigate } = this.props;
@@ -61,12 +71,7 @@ class Maps extends React.Component {
           const marker = new this.mapApi.Marker({
             position: { lat: city.latitude, lng: city.longitude },
             title: city.name,
-            label: {
-              text: city.name,
-              color: '#3a3a3a',
-              fontSize: '16px',
-              fontWeight: '600',
-            },
+            label: this.markerLabel(city.name),
             icon: {
               url: '/place.svg',
               scaledSize: new this.mapApi.Size(40, 40),
@@ -88,18 +93,32 @@ class Maps extends React.Component {
 
   zoomToCity = () => {
     const { client, city } = this.props;
-    if (!city) return;
+    if (!city) {
+      this.map.panTo(initCenter);
+      this.map.setZoom(initZoom);
+    }
     client
       .query({ query, variables: { city } })
       .then(({ data }) => {
         return data.city[0];
       })
       .then(({ latitude, longitude }) => {
+        if (this.currentMarker) {
+          this.currentMarker.setLabel(
+            this.markerLabel(this.currentMarker.title)
+          );
+        }
+        const currentMarker = this.markers.find(
+          m => m.title.toLowerCase() === city.toLowerCase()
+        );
+        this.currentMarker = currentMarker;
+        this.currentMarker.setLabel(
+          this.markerLabel(this.currentMarker.title, true)
+        );
         this.map.panTo({ lat: latitude, lng: longitude });
         this.map.setZoom(11);
       });
   };
-
 
   render() {
     return (

@@ -1,5 +1,3 @@
-const path = require('path');
-
 const graphql = {
   test: /\.(graphql|gql)$/,
   exclude: /node_modules/,
@@ -23,7 +21,7 @@ module.exports = {
           {
             loader: "react-svg-loader",
             options: {
-              jsx: true // true outputs JSX tags
+              jsx: true
             }
           }
         ]
