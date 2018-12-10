@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 
 import Header from '../header';
 import Panel from '../panel';
+import Maps from '../maps';
 
 import { theme, today } from '../constants';
 
@@ -49,10 +50,10 @@ const headerBg = (
 const MapHolder = styled.div`
   position: relative;
   width: 100%;
-  height: 1000px;
+  height: 200vh;
   top: 5vh;
-  background-color: #d8d8d8;
 `;
+// background-color: #d8d8d8;
 
 const HeaderHolder = styled.div`
   position: absolute;
@@ -85,13 +86,27 @@ class Layout extends React.Component {
             }
           `}
         />
-        <MapHolder id="map" />
+        <MapHolder>
+          <Router>
+            <Maps today={this.state.today} path="/" />
+            <Maps today={this.state.today} path="/cities/:city" />
+          </Router>
+        </MapHolder>
         {headerBg}
         {panelBg}
         <HeaderHolder>
           <Router>
-            <Header today={this.state.today} path="/" home changeDate={this.changeDate} />
-            <Header today={this.state.today} path="/cities/:city" changeDate={this.changeDate} />
+            <Header
+              today={this.state.today}
+              path="/"
+              home
+              changeDate={this.changeDate}
+            />
+            <Header
+              today={this.state.today}
+              path="/cities/:city"
+              changeDate={this.changeDate}
+            />
           </Router>
         </HeaderHolder>
         <PanelHolder>
