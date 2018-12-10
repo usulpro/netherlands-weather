@@ -5,6 +5,10 @@ permissions:
 - operation: City.create
 - operation: City.update
 - operation: City.delete
+- operation: Weather.read
+- operation: Weather.create
+- operation: Weather.update
+- operation: Weather.delete
 - operation: File.read
 - operation: File.create
 - operation: File.update

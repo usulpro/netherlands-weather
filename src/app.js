@@ -3,7 +3,8 @@ import { ApolloProvider } from 'react-apollo';
 import { Query } from 'react-apollo';
 import { Router, Link } from '@reach/router';
 
-import query from './cities.gql';
+import Layout from './common/Layout'
+
 
 const Home = () => (
   <>
@@ -16,25 +17,25 @@ const Home = () => (
   </>
 );
 
-const City = ({ city }) => (
-  <>
-    <h2>{city.toUpperCase()}</h2>
-    <br />
-    <Link to="/">back</Link>
-    <br />
-    <br />
-    <Query query={query} variables={{ city }}>
-      {({ data, loading }) => (
-        <div>
-          {`${loading ? '* ' : ''}`}
-          {JSON.stringify(data)}
-        </div>
-      )}
-    </Query>
-  </>
-);
+// const City = ({ city }) => (
+//   <>
+//     <h2>{city.toUpperCase()}</h2>
+//     <br />
+//     <Link to="/">back</Link>
+//     <br />
+//     <br />
+//     <Query query={query} variables={{ city }}>
+//       {({ data, loading }) => (
+//         <div>
+//           {`${loading ? '* ' : ''}`}
+//           {JSON.stringify(data)}
+//         </div>
+//       )}
+//     </Query>
+//   </>
+// );
 
-const Layout = () => (
+const OldLayout = () => (
   <main>
     <Router>
       <Home path="/" />

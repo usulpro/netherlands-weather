@@ -1,5 +1,0 @@
-query getCities($city: String) {
-  allCities(filter: { name: $city }) {
-    name
-  }
-}
