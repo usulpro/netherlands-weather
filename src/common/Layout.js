@@ -8,7 +8,13 @@ import Maps from '../maps';
 
 import { theme, today, firstDate } from '../constants';
 
-const maxDate = (date1, date2) => (date1 >= date2 ? date1 : date2);
+const maxDate = (date1, date2) => {
+  try {
+    return date1 >= date2 ? date1 : date2;
+  } catch (err) {
+    return firstDate;
+  }
+};
 
 const Container = styled.div`
   position: absolute;
