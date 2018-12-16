@@ -3,9 +3,12 @@
 Live Demo:
 https://usulpro-weather.herokuapp.com/
 
+Storybook:
+https://usulpro.github.io/netherlands-weather/
+
 ## Features & Details
 
-- React SPA with SRR
+- React SPA with SSR
 - Client and Server routing with Reach Router
 - Human-readable URLs
 - Responsive design
@@ -19,7 +22,7 @@ https://usulpro-weather.herokuapp.com/
 - Deployable Graphcool Service (`API/README.md`)
 - Deployable to Heroku NodeJs application
 - Continuous delivery to Heroku from Gitbub (master branch)
-- Storybook for developing and UI testing
+- Storybook for developing and UI testing (https://usulpro.github.io/netherlands-weather/)
 - Test coverage with Jest https://usulpro-weather.herokuapp.com/coverage/lcov-report/index.html
 
 (*) how to test:
@@ -62,7 +65,16 @@ Then you should be logged in to Graphcool Service (`graphcool login --token "YOU
 
 Just `git push` master branch to Github, CD will start automatically.
 
+### Storybook
+
+Storybook will be deployed to Github-Pages
+
+```
+yarn deploy:storybook
+```
+
 ## Credits
 
 Oleg Proskurin 2018
+
 email: pro@usul.su

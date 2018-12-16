@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1544987149163" clover="3.2.0">
-  <project timestamp="1544987149163" name="All files">
+<coverage generated="1544987249307" clover="3.2.0">
+  <project timestamp="1544987249308" name="All files">
     <metrics statements="17" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3" elements="21" coveredelements="14" complexity="0" loc="17" ncloc="17" packages="1" files="5" classes="5">
       <file name="app.js" path="/media/diskE/WebProjects/robert/stack/debug/netherlands-weather/src/app.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
