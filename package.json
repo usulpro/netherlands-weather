@@ -12,7 +12,7 @@
     "dev": "nodemon --exec heroku local dev",
     "storybook": "start-storybook -p 9001",
     "build-storybook": "build-storybook",
-    "test": "jest --watch",
+    "test": "jest --watchAll",
     "deploy:api": "cd API && gcf deploy",
     "convert": "node scripts/ndf.js",
     "upload": "cp scripts/output/data.zip API/data/data.zip && cd API && gcf reset && gcf import -s data/data.zip"
@@ -73,6 +73,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
     "jest": "^23.6.0",
+    "jest-emotion": "^10.0.5",
     "jest-svg-transformer": "^1.0.0",
     "jest-transform-graphql": "^2.1.0",
     "nodemon": "^1.18.7",
