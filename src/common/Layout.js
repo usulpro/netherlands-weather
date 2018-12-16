@@ -6,7 +6,9 @@ import Header from '../header';
 import Panel from '../panel';
 import Maps from '../maps';
 
-import { theme, today } from '../constants';
+import { theme, today, firstDate } from '../constants';
+
+const maxDate = (date1, date2) => (date1 >= date2 ? date1 : date2);
 
 const Container = styled.div`
   position: absolute;
@@ -25,7 +27,7 @@ const MapHolder = styled.div`
   height: 110vh;
   min-height: 500px;
   top: 0;
-  clip-path: polygon(96% 0%, 100% 0%, 100% 150%,0 150%,0 70%);
+  clip-path: polygon(96% 0%, 100% 0%, 100% 150%, 0 150%, 0 70%);
   background-color: #dfd2ae;
 `;
 
@@ -45,7 +47,7 @@ const PanelHolder = styled.div`
   top: calc(200px - 3vw);
   width: 400px;
   height: 200px;
-
+  z-index: 12;
 `;
 
 class Layout extends React.Component {
@@ -53,7 +55,7 @@ class Layout extends React.Component {
     today,
   };
 
-  changeDate = today => this.setState({ today });
+  changeDate = today => this.setState({ today: maxDate(today, firstDate) });
 
   render() {
     return (
