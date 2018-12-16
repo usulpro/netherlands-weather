@@ -2,7 +2,7 @@ query getCities($city: String, $today: DateTime) {
   city: allCities(filter: { name: $city }, orderBy: name_ASC) {
     id
     name
-    weather(filter: { datetime: $today }) {
+    weather(filter: { datetime_gte: $today }, orderBy: datetime_ASC, first: 1) {
       id
       datetime
       precipitationMm

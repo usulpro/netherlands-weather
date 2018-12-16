@@ -45,6 +45,7 @@ class Maps extends React.Component {
       setTimeout(this.initMap, 50);
       return;
     }
+    console.log('Google map is loaded!');
     this.mapApi = window.google.maps;
     this.map = new this.mapApi.Map(this.mapContainer, {
       zoom: initZoom,
@@ -96,6 +97,7 @@ class Maps extends React.Component {
     if (!city) {
       this.map.panTo(initCenter);
       this.map.setZoom(initZoom);
+      return;
     }
     client
       .query({ query, variables: { city } })
