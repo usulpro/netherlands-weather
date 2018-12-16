@@ -1,4 +1,4 @@
-export const today = new Date('2014-08-08 00:00:00').toISOString();
+export const today = new Date('2014-08-07T20:00:00.000Z').toISOString();
 
 export const theme = {
   headerBackground: '#336da7',
