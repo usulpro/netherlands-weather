@@ -37,6 +37,7 @@ const HeaderHolder = styled.div`
   clip-path: polygon(0 0, 86% 0, 0 calc(180px + 6%));
   background-color: ${theme.headerBackground};
   overflow: visible;
+  z-index: 10;
 `;
 
 const PanelHolder = styled.div`

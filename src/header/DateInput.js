@@ -44,6 +44,8 @@ class DateInput extends React.Component {
   handleChange = ev => {
     const date = ev.target.value;
     const dateIso = dayjs(date).toISOString();
+		console.log("​DateInput -> date", date)
+		console.log("​DateInput -> dateIso", dateIso)
 
     this.setState({ isEdit: false }, () => {
       this.props.onChange(dateIso);
